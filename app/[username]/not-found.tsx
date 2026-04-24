@@ -4,9 +4,9 @@ export default function UsernameNotFound() {
   return (
     <main className="min-h-screen bg-muted/40 px-4 py-16">
       <div className="mx-auto max-w-md rounded-2xl border bg-background p-8 text-center shadow-sm">
-        <h1 className="text-2xl font-semibold text-foreground">User not found</h1>
+        <h1 className="text-2xl font-semibold text-foreground">404 Not Found</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          That username/page doesn’t exist on LinkID.
+          Opps! The page you're looking for doesn't exist.
         </p>
 
         <div className="mt-6 flex justify-center gap-3">
