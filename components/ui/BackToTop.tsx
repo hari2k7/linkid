@@ -12,9 +12,7 @@ export default function BackToTop({
   threshold = 300,
   scrollTo = 0,
 }: BackToTopProps) {
-  const [visible, setVisible] = useState<boolean>(
-    typeof window !== "undefined" ? window.scrollY > threshold : false
-  );
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
     setVisible(window.scrollY > threshold);
