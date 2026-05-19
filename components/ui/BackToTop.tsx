@@ -1,34 +1,39 @@
 "use client";
- 
+
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
- 
+
 interface BackToTopProps {
   threshold?: number;
   scrollTo?: number;
 }
- 
+
 export default function BackToTop({
   threshold = 300,
   scrollTo = 0,
 }: BackToTopProps) {
-  const [visible, setVisible] = useState<boolean>(false);
- 
+  const [visible, setVisible] = useState<boolean>(
+    typeof window !== "undefined" ? window.scrollY > threshold : false
+  );
+
   useEffect(() => {
+    setVisible(window.scrollY > threshold);
     const handleScroll = () => setVisible(window.scrollY > threshold);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [threshold]);
- 
+
   const handleClick = () => {
     window.scrollTo({ top: scrollTo, behavior: "smooth" });
   };
- 
+
   return (
     <button
       onClick={handleClick}
       aria-label="Back to top"
       title="Back to top"
+      tabIndex={visible ? 0 : -1}
+      aria-hidden={!visible}
       className={[
         "fixed bottom-6 right-6 z-50",
         "h-10 w-10 rounded-full",
